@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.safesend.ui.home.MessagesFragment"
+        android:label="Messages"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_blocked"
+        android:name="com.example.safesend.ui.blocked.BlockedFragment"
+        android:label="Blocked"
+        tools:layout="@layout/fragment_blocked" />
+
+    <fragment
+        android:id="@+id/nav_new_message"
+        android:name="com.example.safesend.ui.new_message.NewMessageFragment"
+        android:label="New Message"
+        tools:layout="@layout/fragment_new_message" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.safesend.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.safesend.ui.about.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+</navigation>
