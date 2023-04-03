@@ -31,7 +31,7 @@ class MessageReceivedBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
         val scope = CoroutineScope(SupervisorJob())
-        val dao = SmsDatabase.getDatabase(context, scope).smsDao()
+//        val dao = SmsDatabase.getDatabase(context, scope).smsDao()
         val repo = MessageRepository(context)
         val sms = Telephony.Sms.Intents.getMessagesFromIntent(intent)[0]
         createNotificationChannel(context)

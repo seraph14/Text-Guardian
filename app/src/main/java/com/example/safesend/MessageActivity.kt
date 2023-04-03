@@ -2,12 +2,14 @@ package com.example.safesend
 
 import android.app.ActionBar
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safesend.Utility.SMS
@@ -31,7 +33,7 @@ class MessageActivity : AppCompatActivity() {
         recycler = findViewById(R.id.detail_rc_)
         recycler?.adapter = recycleAdapter
         recycler?.layoutManager = LinearLayoutManager(applicationContext)
-        getIndividualSms(ir.toString())
+            getIndividualSms(ir.toString())
     }
 
     private fun getIndividualSms(sender: String){
@@ -43,7 +45,6 @@ class MessageActivity : AppCompatActivity() {
         val singleUser = ArrayList<SMS>()
         if (cursor?.moveToFirst() == true) { // must check the result to prevent exception
             do {
-                val id: String = cursor.getString(0)
                 val address: String = cursor.getString(1)
                 val body: String = cursor.getString(2)
                 val date: Long = cursor.getLong(3)
@@ -54,7 +55,6 @@ class MessageActivity : AppCompatActivity() {
         }
         if (cursor_sender?.moveToFirst() == true) { // must check the result to prevent exception
             do {
-                val id: String = cursor_sender.getString(0)
                 val address: String = cursor_sender.getString(1)
                 val body: String = cursor_sender.getString(2)
                 val date: Long = cursor_sender.getLong(3)

@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 
 class MessagesViewModel(private val app: Application) : AndroidViewModel(app) {
     val scope = CoroutineScope(SupervisorJob())
-    private var messageDao: DaoSMS
-    private var repo: MessageRepository
+    private lateinit var messageDao: DaoSMS
+    private lateinit var repo: MessageRepository
     val allInbox: MutableLiveData<MutableList<SMS>> = MutableLiveData()
     init {
         messageDao = SmsDatabase.getDatabase(app, scope).smsDao();
