@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        requestPermission()
+        requestDefaultSmsPermission()
+
         br = MessageReceivedBroadcastReceiver()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -73,19 +74,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun requestPermission(){
-        if (Telephony.Sms.getDefaultSmsPackage(applicationContext) != applicationContext.packageName){
+    private fun requestDefaultSmsPermission(){
+        if (Telephony.Sms.getDefaultSmsPackage(applicationContext) != packageName) {
             val setSmsAppIntent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
-            setSmsAppIntent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME,
-                    packageName)
+            setSmsAppIntent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, packageName)
             startActivityForResult(setSmsAppIntent, REQUEST_CODE_ASK_DEFAULT)
         }
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS), REQUEST_CODE_ASK_PERMISSION)
-        }
-
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.about_menu, menu)

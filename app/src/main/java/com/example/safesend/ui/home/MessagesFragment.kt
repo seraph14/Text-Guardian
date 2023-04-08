@@ -2,12 +2,17 @@ package com.example.safesend.ui.home
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Telephony
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,7 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MessagesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-     lateinit var recycleAdapter: MessagesAdapter
+    lateinit var recycleAdapter: MessagesAdapter
     private lateinit var fab: FloatingActionButton
     private val smsViewModel: MessagesViewModel by viewModels()
 
@@ -32,9 +37,12 @@ class MessagesFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         recycleAdapter = MessagesAdapter(activity?.applicationContext)
-        smsViewModel.allInbox.observe(viewLifecycleOwner, Observer {
-            recycleAdapter.setData(it)
-        })
+        val defaultSmsApp = Telephony.Sms.getDefaultSmsPackage(requireContext())
+        if (requireContext().packageName == defaultSmsApp) {
+            smsViewModel.allInbox.observe(viewLifecycleOwner, Observer {
+                recycleAdapter.setData(it)
+            })
+        }
         setHasOptionsMenu(true)
         return  inflater.inflate(R.layout.fragment_home, container, false)
     }
