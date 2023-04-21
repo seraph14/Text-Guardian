@@ -83,32 +83,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/padding_standard"
-                    android:paddingEnd="@dimen/padding_sm_standard"
-                    android:src="@drawable/profile" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/naboni_abebe"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/background"
-                    android:textSize="@dimen/text_small" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:padding="@dimen/padding_standard"
                     android:paddingEnd="@dimen/padding_sm_standard"
                     android:src="@drawable/profile" />
@@ -116,55 +92,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nabek_abebe"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/surafel"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/text_small" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/padding_standard"
-                    android:paddingEnd="@dimen/padding_sm_standard"
-                    android:src="@drawable/profile" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/surafel_kass"
+                    android:text="@string/mobile_developer"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/background"
-                    android:textSize="@dimen/text_small" />
+                    android:textSize="12sp" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/padding_standard"
-                    android:paddingEnd="@dimen/padding_sm_standard"
-                    android:src="@drawable/profile" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yohannis_a"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/background"
-                    android:textSize="@dimen/text_small" />
 
             </LinearLayout>
         </LinearLayout>

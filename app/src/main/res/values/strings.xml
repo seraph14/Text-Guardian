@@ -25,12 +25,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name="about_page_header">SMS BLOCKER</string>
-    <string name="about_page_header2">OUR TEAM</string>
+    <string name="about_page_header">TEXT GUARDIAN</string>
+    <string name="about_page_header2">Developed By</string>
     <string name="about_page_paragraph1">This app automatically blocks spam text messages from numbers, non-numbers and unknown senders.</string>
-    <string name="about_page_paragraph2">Regain your privacy and peace of mind.  This is the top text and spam blocker for Android. Get rid of unwanted texts. It just works!</string>
-    <string name="naboni_abebe">Naboni Abebe</string>
-    <string name="nabek_abebe">Nabek Abebe</string>
-    <string name="surafel_kass">Surafel Kass</string>
-    <string name="yohannis_a">Yohannis A</string>
+    <string name="about_page_paragraph2">Regain your privacy and peace of mind.  This is the top text and spam blocker for Android. Get rid of unwanted sms texts and so much more.</string>
+    <string name="surafel">Surafel Kassahun</string>
+    <string name="mobile_developer">Mobile Developer</string>
 </resources>
