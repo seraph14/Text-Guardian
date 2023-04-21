@@ -29,17 +29,20 @@
             android:paddingLeft="@dimen/nav_header_vertical_spacing"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="John Doe"
-            />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="San Francisco, US" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textColor="#2699FB"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="San Francisco, US"
+                android:textColor="#2699FB" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
