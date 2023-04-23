@@ -52,9 +52,9 @@ class MessagesFragment : Fragment() {
         recyclerView = view.findViewById(R.id.rc_view)
         recyclerView.adapter = recycleAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
-        fab = view.findViewById(R.id.fab2)
+        fab = view.findViewById(R.id.create_message_fab)
         fab.setOnClickListener { _ ->
-            findNavController().navigate(R.id.nav_new_message)
+            findNavController().navigate(R.id.action_nav_home_to_nav_new_message)
         }
     }
 

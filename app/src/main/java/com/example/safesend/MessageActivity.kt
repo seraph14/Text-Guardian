@@ -33,7 +33,7 @@ class MessageActivity : AppCompatActivity() {
         recycler = findViewById(R.id.detail_rc_)
         recycler?.adapter = recycleAdapter
         recycler?.layoutManager = LinearLayoutManager(applicationContext)
-            getIndividualSms(ir.toString())
+        getIndividualSms(ir.toString())
     }
 
     private fun getIndividualSms(sender: String){
