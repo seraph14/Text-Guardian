@@ -13,14 +13,15 @@
         <action
             android:id="@+id/action_nav_home_to_nav_new_message"
             app:destination="@id/nav_new_message" />
+        <action
+            android:id="@+id/action_nav_home_to_messagesFragment"
+            app:destination="@id/messagesFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/nav_blocked"
         android:name="com.example.safesend.ui.blocked.BlockedFragment"
         android:label="Blocked"
         tools:layout="@layout/fragment_blocked" />
-
     <fragment
         android:id="@+id/nav_new_message"
         android:name="com.example.safesend.ui.new_message.NewMessageFragment"
@@ -36,4 +37,13 @@
         android:name="com.example.safesend.ui.about.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/messagesFragment"
+        android:label="{sender}"
+        android:name="com.example.safesend.MessagesFragment" >
+        <argument
+            android:name="sender"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

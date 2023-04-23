@@ -1,24 +1,17 @@
 package com.example.safesend.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
-import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.safesend.MessageActivity
 import com.example.safesend.R
 import com.example.safesend.Utility.SMS
-import com.example.safesend.models.MessageModel
-import com.google.android.material.internal.ContextUtils.getActivity
-import java.lang.Error
-import java.security.AccessController.getContext
+import com.example.safesend.ui.home.MessagesFragmentDirections
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,10 +30,9 @@ class MessagesAdapter(ctx: Context?): RecyclerView.Adapter<MessagesAdapter.Messa
         val m = msgs.get(position)
         holder.bind(m)
         holder.itemView.setOnClickListener {
-            val i = Intent(context, MessageActivity::class.java)
-            i.putExtra("Sender", m.msgSender)
-            i.flags = FLAG_ACTIVITY_NEW_TASK
-            context?.startActivity(i)
+            val action = MessagesFragmentDirections.actionNavHomeToMessagesFragment(m.msgSender)
+            holder.itemView.findNavController()
+                .navigate(action)
         }
     }
     override fun getItemCount(): Int {

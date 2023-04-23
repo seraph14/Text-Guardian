@@ -1,47 +1,47 @@
 package com.example.safesend
 
-import android.app.ActionBar
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safesend.Utility.SMS
 import com.example.safesend.adapters.DetailMessageAdapter
-import com.example.safesend.adapters.MessagesAdapter
 
-class MessageActivity : AppCompatActivity() {
+class MessagesFragment : Fragment() {
     private var recycler: RecyclerView? = null
     private var recycleAdapter: DetailMessageAdapter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_message)
-        val actionBar: ActionBar? = actionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        setSupportActionBar(findViewById(R.id.toolbar))
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_messages, container, false)
 
-        val ir = intent.extras?.get("Sender")
-        title = ir.toString()
         recycleAdapter = DetailMessageAdapter()
-        recycler = findViewById(R.id.detail_rc_)
+        recycler = view.findViewById(R.id.detail_rc_)
         recycler?.adapter = recycleAdapter
-        recycler?.layoutManager = LinearLayoutManager(applicationContext)
-        getIndividualSms(ir.toString())
+        recycler?.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
+        val sender = MessagesFragmentArgs.fromBundle(requireArguments()).sender
+
+        getIndividualSms(sender)
+
+        return view
     }
 
     private fun getIndividualSms(sender: String){
         val col_projection = arrayOf("_id", "address", "body","date")
         val selectionClause = "address IN (?)"
         val sa = arrayOf(sender)
-        val cursor: Cursor? = applicationContext.contentResolver.query(Uri.parse("content://sms/inbox"), col_projection, selectionClause, sa, "date")
-        val cursor_sender: Cursor? = applicationContext.contentResolver.query(Uri.parse("content://sms/sent"), col_projection, selectionClause, sa, "date")
+        val cursor: Cursor? = requireActivity().applicationContext.contentResolver.query(Uri.parse("content://sms/inbox"), col_projection, selectionClause, sa, "date")
+        val cursor_sender: Cursor? = requireActivity().applicationContext.contentResolver.query(Uri.parse("content://sms/sent"), col_projection, selectionClause, sa, "date")
         val singleUser = ArrayList<SMS>()
         if (cursor?.moveToFirst() == true) { // must check the result to prevent exception
             do {
@@ -68,12 +68,5 @@ class MessageActivity : AppCompatActivity() {
         }
         recycleAdapter?.setData(singleUser)
         cursor?.close()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        super.onOptionsItemSelected(item)
-        val intent: Intent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(intent)
-        return true
     }
 }
