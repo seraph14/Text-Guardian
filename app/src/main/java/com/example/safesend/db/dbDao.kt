@@ -1,6 +1,5 @@
 package com.example.safesend.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.safesend.Utility.SMS
 import kotlinx.coroutines.flow.Flow

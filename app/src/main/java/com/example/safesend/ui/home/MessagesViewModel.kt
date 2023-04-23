@@ -1,18 +1,14 @@
 package com.example.safesend.ui.home
 
 import android.app.Application
-import android.content.Context
-import android.database.Cursor
-import android.net.Uri
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.example.safesend.Utility.SMS
 import com.example.safesend.db.DaoSMS
 import com.example.safesend.db.SmsDatabase
 import com.example.safesend.repository.MessageRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 
 
 class MessagesViewModel(private val app: Application) : AndroidViewModel(app) {

@@ -4,11 +4,10 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safesend.Utility.SMS
@@ -53,6 +52,7 @@ class MessagesFragment : Fragment() {
                 Log.i("Messages: ", "$address $body")
             } while (cursor.moveToNext())
         }
+        cursor?.close()
         if (cursor_sender?.moveToFirst() == true) { // must check the result to prevent exception
             do {
                 val address: String = cursor_sender.getString(1)
@@ -67,6 +67,5 @@ class MessagesFragment : Fragment() {
             it.msgDate
         }
         recycleAdapter?.setData(singleUser)
-        cursor?.close()
     }
 }

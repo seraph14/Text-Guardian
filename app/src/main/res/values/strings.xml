@@ -1,29 +1,12 @@
 <resources>
     <string name="app_name">Safe Send</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="action_notification">Notification</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="long_text">Hey its me why do u not pick up phone i have bee calling u forever Hey its me why do u not pick up phone i have bee calling u forever</string>
-    <string name="title_activity_message">MessageActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="about_page_header">TEXT GUARDIAN</string>
     <string name="about_page_header2">Developed By</string>
@@ -32,4 +15,9 @@
     <string name="surafel">Surafel Kassahun</string>
     <string name="mobile_developer">Mobile Developer</string>
     <string name="write_new_message">Write new message</string>
+    <string name="blocked">Blocked</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate Us</string>
 </resources>

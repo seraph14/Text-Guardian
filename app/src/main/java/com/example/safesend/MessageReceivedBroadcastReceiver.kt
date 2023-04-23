@@ -10,18 +10,14 @@ import android.graphics.Color
 import android.os.Build
 import android.provider.Telephony
 import android.telephony.SmsMessage
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.safesend.Utility.SMS
-import com.example.safesend.db.SmsDatabase
 import com.example.safesend.repository.MessageRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import java.sql.Date
-import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
 class MessageReceivedBroadcastReceiver : BroadcastReceiver() {

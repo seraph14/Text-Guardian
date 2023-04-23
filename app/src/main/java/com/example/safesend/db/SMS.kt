@@ -1,6 +1,7 @@
 package com.example.safesend.Utility
-import androidx.room.*
-import com.example.safesend.db.DaoSMS
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "sms_blocked")
 data class SMS(

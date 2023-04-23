@@ -1,10 +1,6 @@
 package com.example.safesend.Utility
 
 import android.app.Application
-import com.example.safesend.db.SmsDatabase
-import com.example.safesend.repository.MessageRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 
 class SMSApplication : Application() {
 

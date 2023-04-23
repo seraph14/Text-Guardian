@@ -1,25 +1,19 @@
 package com.example.safesend.ui.new_message
 
-import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.*
 import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.safesend.R
-import android.provider.ContactsContract
-import android.provider.Telephony
-import android.telephony.SmsManager
-import android.telephony.TelephonyManager
-import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import com.example.safesend.R
 
 class NewMessageFragment : Fragment() {
 

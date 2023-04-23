@@ -10,16 +10,8 @@
     <dimen name="text_small">12sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_l_small">13sp</dimen>
-    <dimen name="text_large">24sp</dimen>
-    <dimen name="text_x_large">30sp</dimen>
-<!--    text margins style-->
-    <dimen name="txt_margin_small">10sp</dimen>
-    <dimen name="txt_margin_standard">16sp</dimen>
-    <dimen name="txt_margin_m_standard">16sp</dimen>
-    <dimen name="txt_margin_large">40sp</dimen>
-    <dimen name="txt_margin_x_large">60sp</dimen>
+    <!--    text margins style-->
     <dimen name="padding_standard">10sp</dimen>
     <dimen name="padding_sm_standard">5sp</dimen>
-    <dimen name="image_icon_size">80sp</dimen>
 
 </resources>
