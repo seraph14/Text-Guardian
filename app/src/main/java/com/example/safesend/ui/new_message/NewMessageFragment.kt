@@ -19,7 +19,7 @@ class NewMessageFragment : Fragment() {
 
     private lateinit var listView: ListView
     private lateinit var newMessageViewModel: NewMessageViewModel
-    val countryCode: String = "+251"
+    val countryCode: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

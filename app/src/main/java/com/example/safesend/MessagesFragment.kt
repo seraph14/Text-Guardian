@@ -39,8 +39,24 @@ class MessagesFragment : Fragment() {
         val col_projection = arrayOf("_id", "address", "body","date")
         val selectionClause = "address IN (?)"
         val sa = arrayOf(sender)
-        val cursor: Cursor? = requireActivity().applicationContext.contentResolver.query(Uri.parse("content://sms/inbox"), col_projection, selectionClause, sa, "date")
-        val cursor_sender: Cursor? = requireActivity().applicationContext.contentResolver.query(Uri.parse("content://sms/sent"), col_projection, selectionClause, sa, "date")
+        val cursor: Cursor? = requireActivity()
+            .applicationContext.contentResolver
+            .query(
+                Uri.parse("content://sms/inbox"),
+                col_projection,
+                selectionClause,
+                sa,
+                "date"
+            )
+        val cursor_sender: Cursor? = requireActivity()
+            .applicationContext.contentResolver
+            .query(
+                Uri.parse("content://sms/sent"),
+                col_projection,
+                selectionClause,
+                sa,
+                "date"
+            )
         val singleUser = ArrayList<SMS>()
         if (cursor?.moveToFirst() == true) { // must check the result to prevent exception
             do {
@@ -58,7 +74,7 @@ class MessagesFragment : Fragment() {
                 val address: String = cursor_sender.getString(1)
                 val body: String = cursor_sender.getString(2)
                 val date: Long = cursor_sender.getLong(3)
-                val smsInbox = SMS(0, "You", body,date)
+                val smsInbox = SMS(0, "you", body,date)
                 singleUser.add(smsInbox)
                 Log.i("Messages: ", "$address $body")
             } while (cursor_sender.moveToNext())

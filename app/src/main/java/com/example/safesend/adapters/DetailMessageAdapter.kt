@@ -12,7 +12,12 @@ class DetailMessageAdapter: RecyclerView.Adapter<DetailMessageAdapter.DetailMess
     var msgs = emptyList<SMS>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailMessageAdapterViewHolder {
         val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.detail_rc, parent, false)
+                .inflate(
+                    if (viewType == 1) R.layout.`received_message_card.xml`
+                    else R.layout.sent_message_card,
+                    parent,
+                    false
+                )
         return DetailMessageAdapterViewHolder(view)
     }
 
@@ -23,16 +28,21 @@ class DetailMessageAdapter: RecyclerView.Adapter<DetailMessageAdapter.DetailMess
     override fun getItemCount(): Int {
         return msgs.size
     }
+
+    override fun getItemViewType(position: Int): Int {
+        if (msgs.get(position).msgSender == "you")
+            return 0
+        return 1
+    }
+
     fun setData(messages: List<SMS>){
         this.msgs = messages
         notifyDataSetChanged()
     }
     class DetailMessageAdapterViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        private val sender: TextView = itemView.findViewById(R.id.msg_sender)
         private val msg: TextView = itemView.findViewById(R.id.msg_content)
 
         fun bind(sms: SMS){
-            sender.text = sms.msgSender
             msg.text = sms.msgContent
         }
     }
