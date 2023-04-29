@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.safesend.R
 import com.example.safesend.Utility.SMS
 
-class DetailMessageAdapter: RecyclerView.Adapter<DetailMessageAdapter.DetailMessageAdapterViewHolder>(){
+class DetailMessageAdapter:
+    RecyclerView.Adapter<DetailMessageAdapter.DetailMessageAdapterViewHolder>(){
     var msgs = emptyList<SMS>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailMessageAdapterViewHolder {
         val view: View = LayoutInflater.from(parent.context)
                 .inflate(
-                    if (viewType == 1) R.layout.`received_message_card.xml`
+                    if (viewType == 1) R.layout.received_message_card
                     else R.layout.sent_message_card,
                     parent,
                     false
