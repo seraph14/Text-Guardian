@@ -4,42 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_primary"
         android:orientation="horizontal">
         <!-- Media -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/padding_standard"
+            android:layout_gravity="top"
+            android:paddingRight="@dimen/padding_standard"
             android:src="@drawable/profile" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/received_message_border"
             android:orientation="vertical"
             android:padding="16dp">
-
             <!-- Title, secondary and supporting text -->
-            <TextView
-                android:id="@+id/msg_sender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_medium"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-
             <TextView
                 android:id="@+id/msg_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:gravity="top"
+                android:textColor="@color/background"
+                android:textAppearance="?attr/textAppearanceBody1"
                 android:textSize="@dimen/text_l_small" />
-
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
