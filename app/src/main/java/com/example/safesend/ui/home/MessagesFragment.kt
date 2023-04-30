@@ -59,7 +59,7 @@ class MessagesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                recycleAdapter.getFilter().filter(newText)
+                recycleAdapter.filter.filter(newText)
                 return false
             }
 

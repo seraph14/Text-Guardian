@@ -13,12 +13,10 @@ import kotlinx.coroutines.SupervisorJob
 
 class MessagesViewModel(private val app: Application) : AndroidViewModel(app) {
     val scope = CoroutineScope(SupervisorJob())
-    private lateinit var messageDao: DaoSMS
-    private lateinit var repo: MessageRepository
+    private val messageDao: DaoSMS = SmsDatabase.getDatabase(app, scope).smsDao()
+    private val repo: MessageRepository = MessageRepository(app.applicationContext)
     val allInbox: MutableLiveData<MutableList<SMS>> = MutableLiveData()
     init {
-        messageDao = SmsDatabase.getDatabase(app, scope).smsDao();
-        repo = MessageRepository(app.applicationContext)
         allInbox.postValue(getMs())
     }
     private fun getMs(): MutableList<SMS>{

@@ -28,7 +28,6 @@ object MessageRepository {
         allMessages.value?.add(sms)
     }
 
-    @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(sms: SMS) {
         messageDao.insertAll(sms)
@@ -70,9 +69,9 @@ object MessageRepository {
 
     suspend fun storeSms(context: Context, sms: SMS){
         val content = ContentValues()
-        content.put("address", sms.msgSender);
-        content.put("body", sms.msgContent);
-        content.put("date", sms.msgDate);
+        content.put("address", sms.msgSender)
+        content.put("body", sms.msgContent)
+        content.put("date", sms.msgDate)
         context.contentResolver.insert(Uri.parse("content://sms/inbox"), content)
     }
 

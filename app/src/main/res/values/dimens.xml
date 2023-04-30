@@ -10,7 +10,6 @@
     <dimen name="text_small">12sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_l_small">15sp</dimen>
-    <dimen name="text_m_small">13sp</dimen>
     <!--    text margins style-->
     <dimen name="padding_standard">10sp</dimen>
     <dimen name="padding_sm_standard">5sp</dimen>

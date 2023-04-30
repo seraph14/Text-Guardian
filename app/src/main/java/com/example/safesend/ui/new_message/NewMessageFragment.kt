@@ -16,13 +16,7 @@ import androidx.fragment.app.Fragment
 import com.example.safesend.R
 
 class NewMessageFragment : Fragment() {
-
-    private lateinit var listView: ListView
-    private lateinit var newMessageViewModel: NewMessageViewModel
     val countryCode: String = ""
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -32,7 +26,7 @@ class NewMessageFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_new_message, container, false)
 
-        var sms = SmsManager.getDefault()
+        val sms = SmsManager.getDefault()
         val sendBtn : ImageButton = root.findViewById(R.id.sendBtn)
         val receiverPhone: EditText = root.findViewById(R.id.recieverPhoneNo)
         val messageContent: EditText = root.findViewById(R.id.message_content)
@@ -62,14 +56,8 @@ class NewMessageFragment : Fragment() {
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        listView = view.findViewById(R.id.list_view)
-//        listView.adapter = adapter
-    }
-
     fun extractPhoneNo(number: String) : String{
-        var result: String = ""
+        var result = ""
         if (number.length == 10 && number.get(0) == '0') {
             result = countryCode + number.substring(1, number.length)
         } else if (number.length == 13 && number.startsWith(countryCode)){

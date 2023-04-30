@@ -26,7 +26,6 @@ abstract class SmsDatabase : RoomDatabase() {
                         "sms_database"
                 ).addCallback(SmsDatabaseCallback(scope)).build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }
@@ -34,7 +33,7 @@ abstract class SmsDatabase : RoomDatabase() {
 
     private class SmsDatabaseCallback(
             private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
