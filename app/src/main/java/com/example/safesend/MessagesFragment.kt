@@ -16,6 +16,7 @@ import com.example.safesend.adapters.DetailMessageAdapter
 class MessagesFragment : Fragment() {
     private var recycler: RecyclerView? = null
     private var recycleAdapter: DetailMessageAdapter? = null
+    private lateinit var sender: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,60 +29,49 @@ class MessagesFragment : Fragment() {
         recycler = view.findViewById(R.id.detail_rc_)
         recycler?.adapter = recycleAdapter
         recycler?.layoutManager = LinearLayoutManager(requireActivity().applicationContext)
-        val sender = MessagesFragmentArgs.fromBundle(requireArguments()).sender
 
-        getIndividualSms(sender)
+        sender = MessagesFragmentArgs.fromBundle(requireArguments()).sender
+
+        getIndividualSms()
 
         return view
     }
 
-    private fun getIndividualSms(sender: String){
-        val col_projection = arrayOf("_id", "address", "body","date")
+    private fun getIndividualSms(){
+        val messages: ArrayList<SMS> = arrayListOf()
+        getMessagesFromDatabase(messages, true)
+        getMessagesFromDatabase(messages, false)
+
+        messages.sortBy {
+            it.msgDate
+        }
+        recycleAdapter?.setData(messages)
+    }
+
+    private fun getMessagesFromDatabase(messages: ArrayList<SMS>, isSent: Boolean) {
+        val colProjection = arrayOf("_id", "address", "body","date")
         val selectionClause = "address IN (?)"
         val sa = arrayOf(sender)
         val cursor: Cursor? = requireActivity()
             .applicationContext.contentResolver
             .query(
-                Uri.parse("content://sms/inbox"),
-                col_projection,
+                Uri.parse("content://sms/${if (isSent) "sent" else "inbox"}"),
+                colProjection,
                 selectionClause,
                 sa,
                 "date"
             )
-        val cursor_sender: Cursor? = requireActivity()
-            .applicationContext.contentResolver
-            .query(
-                Uri.parse("content://sms/sent"),
-                col_projection,
-                selectionClause,
-                sa,
-                "date"
-            )
-        val singleUser = ArrayList<SMS>()
+
         if (cursor?.moveToFirst() == true) { // must check the result to prevent exception
             do {
                 val address: String = cursor.getString(1)
                 val body: String = cursor.getString(2)
                 val date: Long = cursor.getLong(3)
-                val smsInbox = SMS(0, address, body, date)
-                singleUser.add(smsInbox)
-                Log.i("Messages: ", "$address $body")
+                val sms = SMS(0, if (isSent) "you" else address, body, date)
+                messages.add(sms)
             } while (cursor.moveToNext())
         }
         cursor?.close()
-        if (cursor_sender?.moveToFirst() == true) { // must check the result to prevent exception
-            do {
-                val address: String = cursor_sender.getString(1)
-                val body: String = cursor_sender.getString(2)
-                val date: Long = cursor_sender.getLong(3)
-                val smsInbox = SMS(0, "you", body,date)
-                singleUser.add(smsInbox)
-                Log.i("Messages: ", "$address $body")
-            } while (cursor_sender.moveToNext())
-        }
-        singleUser.sortBy {
-            it.msgDate
-        }
-        recycleAdapter?.setData(singleUser)
     }
+
 }
