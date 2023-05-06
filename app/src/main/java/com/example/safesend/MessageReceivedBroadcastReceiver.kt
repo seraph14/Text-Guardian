@@ -43,12 +43,12 @@ class MessageReceivedBroadcastReceiver : BroadcastReceiver() {
                }
 
            }else {
-//            if not scam then display notification and add msg to
-               showNotification(context, sms)
+                // If not scam then display notification and add msg to
+                showNotification(context, sms)
                 scope.launch {
                     repo.storeSms(context, newSms)
                     repo.insertToList(newSms)
-            }
+                }
            }
     }
 

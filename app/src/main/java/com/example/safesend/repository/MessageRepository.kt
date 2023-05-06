@@ -34,37 +34,37 @@ object MessageRepository {
     }
 
     fun readSms(context: Context): List<SMS>{
-        val col_projection = arrayOf("_id", "address", "body","date")
-        val cursor_inbox: Cursor? = context.contentResolver.query(Uri.parse("content://sms/inbox"), col_projection, null, null, "date DESC")
-        val cursor_outbox: Cursor? = context.contentResolver.query(Uri.parse("content://sms/sent"), col_projection, null, null, "date DESC")
-        val inboxSms = ArrayList<SMS>()
-        if (cursor_inbox?.moveToFirst() == true) { // must check the result to prevent exception
-            do {
-                val id: String = cursor_inbox.getString(0)
-                val address: String = cursor_inbox.getString(1)
-                val body: String = cursor_inbox.getString(2)
-                val date: Long = cursor_inbox.getLong(3)
-                val smsInbox = SMS(0, address, body, date)
-                inboxSms.add(smsInbox)
-            } while (cursor_inbox.moveToNext())
-        }
-        if (cursor_outbox?.moveToFirst() == true) { // must check the result to prevent exception
-            do {
-                val id: String = cursor_outbox.getString(0)
-                val address: String = cursor_outbox.getString(1)
-                val body: String = cursor_outbox.getString(2)
-                val date: Long = cursor_outbox.getLong(3)
-                val smsInbox = SMS(0, address, body, date)
-                inboxSms.add(smsInbox)
-            } while (cursor_outbox.moveToNext())
-        }
-        cursor_inbox?.close()
-        cursor_outbox?.close()
-        var filteredSms = inboxSms.sortedByDescending {
+        val messages = ArrayList<SMS>()
+        getSMSFromDB(messages, true, context)
+        getSMSFromDB(messages, false, context)
+        var filteredSms = messages.distinctBy { it.msgSender }
+        filteredSms = filteredSms.sortedByDescending {
             it.msgDate
         }
-        filteredSms = filteredSms.distinctBy { it.msgSender }
         return filteredSms
+    }
+
+    private fun getSMSFromDB(messages: ArrayList<SMS>, isSent: Boolean, context: Context) {
+        val colProjection = arrayOf("_id", "address", "body","date")
+        val cursor: Cursor? = context.contentResolver.query(
+            Uri.parse("content://sms/${if (isSent) "sent" else "inbox"}"),
+            colProjection,
+            null,
+            null,
+            "date DESC"
+        )
+
+        if (cursor?.moveToFirst() == true) { // must check the result to prevent exception
+            do {
+                val id: String = cursor.getString(0)
+                val address: String = cursor.getString(1)
+                val body: String = cursor.getString(2)
+                val date: Long = cursor.getLong(3)
+                val sms = SMS(0, address, body, date)
+                messages.add(sms)
+            } while (cursor.moveToNext())
+        }
+        cursor?.close()
     }
 
     suspend fun storeSms(context: Context, sms: SMS){
